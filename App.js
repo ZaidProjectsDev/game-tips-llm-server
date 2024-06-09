@@ -17,7 +17,7 @@ const app = express();
 app.use(cors());
 app.use(json());
 
-const port = 3050; //Used 3050 cause the React client kept using port 3000
+const port =process.env.PORT || 3050; //Used 3050 cause the React client kept using port 3000
 const chatMessageHistory = new ChatMessageHistory();
 const chatPrompt = ChatPromptTemplate.fromMessages([
     ["system", "You are a game tips provider. When a human asks for help with a game, provide tips relevant to the game. If you do not know much about the game, provide approximate tips. If you get Game Context information data, provide details such as the game's platform, release year and rating."],
@@ -182,5 +182,5 @@ app.get('/', (req, res) => {
 });
 
 app.listen(port, () => {
-    console.log(`Server listening at http://localhost:${port}`);
+    console.log(`Server listening at ${port}`);
 });
